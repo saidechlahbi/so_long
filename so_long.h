@@ -3,21 +3,25 @@
 #ifndef SO_LONG_H
 #define SO_LONG_H
 
+// #include "/usr/include/minilibx/mlx.h"
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
 # include <fcntl.h>
 
 
+
 /*tools*/
 void	ft_putstr_fd(char *s, int fd);
-
+int ft_strlines(char **str);
 
 /*check file*/
-void   check_file(char *str);
+void filter_maps(char *str);
 
 /*check maps*/
 
+/* clean */
+void ft_clean_strings(char **strings);
 
 /* get next line*/
 char	*ft_calloc(size_t nmemb, size_t size);
@@ -31,7 +35,7 @@ char	*get_rest_for_next_line(char *str);
 char	*get_next_line(int fd);
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 10
+#  define BUFFER_SIZE 1
 # endif
 
 #endif

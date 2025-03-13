@@ -10,3 +10,13 @@ void	ft_putstr_fd(char *s, int fd)
 		s++;
 	}
 }
+
+int ft_strlines(char **str)
+{
+	int len;
+
+	len = 0;
+	while (str[len])
+		len++;
+	return len;
+}
