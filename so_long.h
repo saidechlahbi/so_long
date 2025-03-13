@@ -16,9 +16,11 @@ void	ft_putstr_fd(char *s, int fd);
 int ft_strlines(char **str);
 
 /*check file*/
-void filter_maps(char *str);
 
 /*check maps*/
+char **read_the_maps(char *str);
+void filter_maps(char *str);
+
 
 /* clean */
 void ft_clean_strings(char **strings);

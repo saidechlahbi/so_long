@@ -52,7 +52,7 @@ static int ft_lines(char *str)
     return lines;
 }
 
-static char **read_the_maps(char *str)
+char **read_the_maps(char *str)
 {
     int fd;
     char *string;
@@ -79,63 +79,4 @@ static char **read_the_maps(char *str)
     mapes[lines] = NULL;
     close(fd);
     return mapes;
-}
-
-void filter_maps(char *str)
-{
-    char **strings;
-    int i;
-    int j;
-
-    strings = read_the_maps(str);
-    // int i = 0;
-    // while (maps[i])
-    // {
-    //     ft_putstr_fd(maps[i], 1);
-    //     i++;
-    // }
-    // ft_clean_strings(maps);
-    if (ft_strlines(strings) < 3)
-    {
-        ft_clean_strings(strings);
-        ft_putstr_fd("map invalid\n", 2);
-        exit(1);   
-    }
-    i =0;
-    j = 0;
-    while (strings[i])
-    {
-        while (strings[i][j])
-        {
-            if (strings[i][j] != '1' || strings[i][j] != 'C' 
-            || strings[i][j] != 'E' || strings[i][j] != 'P')
-            {
-                ft_clean_strings(strings);
-                exit(1);
-            }
-            j++;
-        }
-        i++;
-    }
-    i = 0;
-    j = 0;
-    int collectibles;
-    int exit;
-    int player;
-    while (strings[i])
-    {
-        while (strings[i][j])
-        {
-            if (strings[i][j] != '1')
-                
-                 || strings[i][j] != 'C' 
-            || strings[i][j] != 'E' || strings[i][j] != 'P')
-            {
-                ft_clean_strings(maps);
-                exit(1);
-            }
-            j++;
-        }
-        i++;
-    }
 }
