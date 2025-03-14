@@ -6,7 +6,7 @@ FILES = check_map.c clean.c so_long.c get_map.c get_next_line.c tools.c \
 
 OBJ = $(FILES:.c=.o)
 
-MAME = so_long
+NAME = so_long
 
 HEADER = so_long.h 
 

@@ -61,7 +61,6 @@ char **read_the_maps(char *str)
 
 
     lines = ft_lines(str);
-    printf("%d\n", lines);
     mapes = malloc(sizeof(char *) * (lines + 1));
     if (!mapes)
        exit(1);

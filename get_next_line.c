@@ -76,7 +76,7 @@ static char	*get_line(char *str)
 		i++;
 	}
 	if (str[i] == '\n')
-		line[i] = '\n';
+		line[i] = 0;
 	return (line);
 }
 
