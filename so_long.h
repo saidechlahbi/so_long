@@ -9,6 +9,12 @@
 #include <stdlib.h>
 # include <fcntl.h>
 
+typedef struct s_node{
+    int flood_x;
+    int flood_y;
+
+} t_node;
+
 
 
 /*tools*/

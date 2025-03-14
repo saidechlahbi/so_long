@@ -109,22 +109,15 @@ void surrounded_by_walls(char **strings)
         out("map invalid, the map must be surrounded by walls\n", strings);
 }
 
-void fill(char**tab, int x, int y, char to_fill) {
-	if (tab[x][y] == to_fill)
-    {
-        printf("bon\n");
-        printf("%d %d \n",x ,y);
-		return ;
-    }
-	tab[x][y] = 'F';
-	fill(tab, x + 1, y, to_fill);
-	fill(tab, x, y + 1, to_fill);
-	fill(tab, x, y - 1, to_fill);
-	fill(tab, x - 1, y, to_fill);
-}
-
-void  flood_fill(char **tab, int x, int y) {
-	fill(tab, x, y,'1');
+void  flood_fill(char **tab, int x, int y)
+{
+    if (tab[x][y] == '1')
+        return;
+    tab[x][y] == 'F';
+    fill(tab, x + 1, y);
+    fill(tab, x, y + 1);
+    fill(tab, x, y - 1);
+    fill(tab, x - 1, y);
 }
 
 void filter_maps(char *str)
@@ -138,13 +131,13 @@ void filter_maps(char *str)
     nb_lines(strings);
     surrounded_by_walls(strings);
     strings1 = read_the_maps(str);
+
+
     flood_fill(strings1, 1, 4);
-    int i = 0;
-    while (strings1[i])
-    {
-        ft_putstr_fd(strings1[i], 1);
-        i++;
-    }
-
-
+    // int i = 0;
+    // while (strings1[i])
+    // {
+    //     ft_putstr_fd(strings1[i], 1);
+    //     i++;
+    // }
 }
