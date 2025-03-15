@@ -1,7 +1,7 @@
 
 #include "so_long.h"
 
-static void   check_file(char *str)
+static void   check_file(t_game *game)
 {
     int i;
     int j;
@@ -10,13 +10,13 @@ static void   check_file(char *str)
     string = ".ber";
     i = 0;
     j = 0;
-    while (str[i])
+    while (game->av[i])
         i++;
     while (string[j])
         j++;
     j--;
     i--;
-    while(str[i] == string[j])
+    while(game->av[i] == string[j])
     {
         i--;
         j--;
@@ -25,19 +25,19 @@ static void   check_file(char *str)
         return ;
     else
     {
-        ft_putstr_fd( "the name of the map shoud be end with _.ber\n", 2);
+        ft_putstr_fd( "Error\nthe name of the map shoud be end with _.ber\n", 2);
         exit(1);
     }
 }
 
-static int ft_lines(char *str)
+static void  ft_lines(t_game *game)
 {
     char *string;
     int lines;
     int fd;
 
-    check_file(str);
-    fd = open (str, O_RDONLY);
+    check_file(game);
+    fd = open (game->av, O_RDONLY);
     if (fd == -1)
         exit(1);
     lines = 0;
@@ -49,33 +49,33 @@ static int ft_lines(char *str)
         string = get_next_line(fd);
     }
     close (fd);
-    return lines;
+    game->map_lenght =  lines;
 }
 
-char **read_the_maps(char *str)
+void read_the_maps(t_game *game)
 {
     int fd;
     char *string;
     int lines;
-    char **mapes;
+    char **map;
 
 
-    lines = ft_lines(str);
-    mapes = malloc(sizeof(char *) * (lines + 1));
-    if (!mapes)
+    ft_lines(game);
+    map = malloc(sizeof(char *) * (game->map_lenght + 1));
+    if (!map)
        exit(1);
-    fd = open (str, O_RDONLY);
+    fd = open (game->av, O_RDONLY);
     if (fd == -1)
         exit(1);
     string = get_next_line(fd); 
     lines = 0;
     while (string)
     {
-        mapes[lines] = string;
+        map[lines] = string;
         lines++;
         string = get_next_line(fd);
     }
-    mapes[lines] = NULL;
+    map[lines] = NULL;
     close(fd);
-    return mapes;
+    game->maps =  map;
 }
