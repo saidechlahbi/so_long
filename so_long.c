@@ -37,7 +37,6 @@ void rander_map(t_game *game)
         }
         i++;
     }
-
 }
 
 int handle(t_game *game)
@@ -45,6 +44,7 @@ int handle(t_game *game)
     out("Error\n", game);
     exit(0);
 }
+
 int main(int ac, char **av)
 {
     t_game *game;
@@ -58,7 +58,6 @@ int main(int ac, char **av)
     game->av = av[1];
     filter_maps(game);
     game->mlx = mlx_init();
-    printf("hello\n");
     if (!game->mlx)
         return(out("Error\n", game), 1);
     game->window = mlx_new_window(game->mlx, game->map_width * 64, game->map_lenght * 64,"so_long");
@@ -66,6 +65,8 @@ int main(int ac, char **av)
         return(out("Error\n", game), 1);
     load_textures(game);
     rander_map(game);
-    mlx_hook(game->window, 17, 0, handle, NULL);
+    mlx_hook(game->window, 17, 0, handle, game);
+    mlx_hook(game->window, 2, 1L<<0, handel, game);
+    // mlx_key_hook(game->window, handel, game);
     mlx_loop(game->mlx);
 }

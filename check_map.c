@@ -5,9 +5,10 @@
 
 void out(char *str, t_game *game)
 {
-    (void )game;
+     clean_game(game);
     // ft_clean_strings(strings);
-    ft_putstr_fd(str, 2);
+    if (str)
+        ft_putstr_fd(str, 2);
     exit(1);   
 
 }
@@ -130,8 +131,8 @@ void get_player_position(t_game *game)
         {
             if (game->maps[i][j] == 'P')
             {
-                game->player.x = i;
-                game->player.y = j;
+                game->player.y = i;
+                game->player.x = j;
                 return ;
             }
             j++;

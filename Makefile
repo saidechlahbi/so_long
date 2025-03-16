@@ -4,7 +4,7 @@ CFLAGS = -Wall -Wextra -Werror
 FRAMEWORKS = -L/usr/include/minilibx-linux -lmlx -lX11 -lXext -lm
 
 FILES = check_map.c clean.c so_long.c get_map.c get_next_line.c tools.c \
-		get_next_line_ulils.c
+		get_next_line_ulils.c inputs.c
 
 OBJ = $(FILES:.c=.o)
 
