@@ -68,12 +68,15 @@ int main(int ac, char **av)
     initialisation(game);
     game->av = av[1];
     filter_maps(game);
+    game->lbaaab = malloc(4);
+    if (!game->lbaaab)
+        out("Error\n", game);
     game->mlx = mlx_init();
     if (!game->mlx)
-        return(out("Error\n", game), 1);
+        out("Error\n", game);
     game->window = mlx_new_window(game->mlx, game->map_width * 64, game->map_lenght * 64,"so_long");
     if (!game->window)
-        return(out("Error\n", game), 1);
+        out("Error\n", game);
     load_textures(game);
     rander_map(game);
     mlx_hook(game->window, 17, 0, handle, game);

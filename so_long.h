@@ -48,6 +48,7 @@ typedef struct s_game
     int map_width;
     t_player player;
     char *av;
+    int  *lbaaab;
 } t_game;
 
 /*tools*/

@@ -39,4 +39,5 @@ void initialisation(t_game *game)
 	game->player.y = 0;
 	game->player.p_count = 0;
 	game->player.p_steps = 0;
+	game->lbaaab = NULL;
 }

@@ -6,7 +6,7 @@
 /*   By: sechlahb <sechlahb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 17:32:08 by sechlahb          #+#    #+#             */
-/*   Updated: 2025/03/18 02:48:42 by sechlahb         ###   ########.fr       */
+/*   Updated: 2025/03/18 03:25:36 by sechlahb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void ft_clean_strings(char **strings)
 
 void clean_game(t_game *game)
 {
+    free(game->lbaaab);
     ft_clean_strings(game->maps);
     if (game->mlx)
     {
