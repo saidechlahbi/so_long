@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   recording.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sechlahb <sechlahb@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/11 17:32:08 by sechlahb          #+#    #+#             */
+/*   Updated: 2025/03/15 15:46:25 by sechlahb         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "so_long.h"
 
@@ -54,7 +65,7 @@ int main(int ac, char **av)
     game = malloc(sizeof(t_game));
     if (!game)
         return 1;
-    ft_memset((void *)game, 0, sizeof(game));
+    initialisation(game);
     game->av = av[1];
     filter_maps(game);
     game->mlx = mlx_init();

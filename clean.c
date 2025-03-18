@@ -1,6 +1,30 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   clean.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sechlahb <sechlahb@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/11 17:32:08 by sechlahb          #+#    #+#             */
+/*   Updated: 2025/03/18 02:48:42 by sechlahb         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "so_long.h"
- 
+
+void ft_clean_strings(char **strings)
+{
+    int i;
+    
+    i = 0;
+    while (strings[i])
+    {
+        free(strings[i]);
+        i++;
+    }
+    free(strings);
+}
+
 void clean_game(t_game *game)
 {
     ft_clean_strings(game->maps);
@@ -22,19 +46,15 @@ void clean_game(t_game *game)
             mlx_destroy_window(game->mlx, game->window);
         }
         mlx_destroy_display(game->mlx);
+        free(game->mlx);
     }
     free(game);
 }
 
-void ft_clean_strings(char **strings)
+void out(char *str, t_game *game)
 {
-    int i;
-
-    i = 0;
-    while (strings[i])
-    {
-        free(strings[i]);
-        i++;
-    }
-    free(strings);
+    clean_game(game);
+    if (str)
+        ft_putstr_fd(str, 2);
+    exit(1);   
 }

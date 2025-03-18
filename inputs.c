@@ -6,7 +6,7 @@
 /*   By: sechlahb <sechlahb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 20:20:54 by sechlahb          #+#    #+#             */
-/*   Updated: 2025/03/15 20:49:12 by sechlahb         ###   ########.fr       */
+/*   Updated: 2025/03/18 01:43:35 by sechlahb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void ft_move_player(t_game *game, int x, int y)
     {
         if (game->c_count == 0)
         {
-            ft_putstr_fd("you win\n", 1);
+            ft_putstr_fd("You win\n", 1);
             mlx_loop_end(game->mlx);
             out(NULL, game);
         }
@@ -43,19 +43,19 @@ void ft_move_player(t_game *game, int x, int y)
 
 int handel(int key, t_game *game)
 {
-    if (key == 65307)
+    if (key == KEY_ESC)
     {
         out("game over\n", game);
         mlx_loop_end(game->mlx);
         exit(1);
     }
-    if (key == 65361) // left 
+    if (key == KEY_LEFT)
         ft_move_player(game, -1, 0);
-    else if (key == 65363) //right
+    else if (key == KEY_RIGHT)
         ft_move_player(game, 1, 0);
-    else if (key == 65362) // up
+    else if (key == KEY_UP)
         ft_move_player(game, 0, -1);
-    else if (key == 65364) // down
+    else if (key == KEY_DOWN)
         ft_move_player(game, 0, 1); 
     return 0;
 }

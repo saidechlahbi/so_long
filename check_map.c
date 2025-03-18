@@ -1,175 +1,84 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   recording.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sechlahb <sechlahb@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/11 17:32:08 by sechlahb          #+#    #+#             */
+/*   Updated: 2025/03/15 15:46:25 by sechlahb         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "so_long.h"
 
-
-
-void out(char *str, t_game *game)
-{
-     clean_game(game);
-    // ft_clean_strings(strings);
-    if (str)
-        ft_putstr_fd(str, 2);
-    exit(1);   
-
-}
-
-void elements(t_game *game)
+static void   check_file(t_game *game)
 {
     int i;
     int j;
+    char *string;
 
+    string = ".ber";
     i = 0;
     j = 0;
-    while (game->maps[i])
-    {
-        j = 0;
-        while (game->maps[i][j])
-        {
-            if (game->maps[i][j] == '1' || game->maps[i][j] == 'C' 
-                || game->maps[i][j] == 'E' || game->maps[i][j] == 'P' 
-                || game->maps[i][j] == '0')
-                j++;
-            else
-                out("map have forein elements\n", game);
-        }
+    while (game->av[i])
         i++;
-    }
-}
-
-void nb_elements(t_game *game)
-{
-    int i;
-    int j;
-  
-    i = 0;
-    while (game->maps[i])
+    while (string[j])
+        j++;
+    j--;
+    i--;
+    while(game->av[i] == string[j])
     {
-        j = 0;
-        while (game->maps[i][j])
-        {
-            if (game->maps[i][j] =='P')
-                game->player.p_count++;
-            else if (game->maps[i][j] =='E')
-                game->e_cout++;
-            else if (game->maps[i][j] =='C')
-                game->c_count++;
-            j++;
-        }
-        i++;
+        i--;
+        j--;
     }
-    if (game->player.p_count == 1 && game->c_count && game->e_cout == 1)
-        return;
+    if (j == -1 && i > -1)
+        return ;
     else
-        out("map invalid, some items do not meet the requirements\n", game);
+        out("Error\nthe name of the map shoud be end with _.ber\n", game);
 }
 
-void nb_lines(t_game *game)
+static void  ft_lines(t_game *game)
 {
-    int i;
-    int size;
+    char *string;
+    int fd;
 
-    i = 0;
-    size = ft_strlen(game->maps[0]);
-    game->map_width = size;
-    if (game->map_lenght < 3)
-        out("map invalid, must be at least 3 lines\n", game);
-    while (game->maps[i])
+    check_file(game);
+    fd = open (game->av, O_RDONLY);
+    if (fd == -1)
+        out("Error\n", game);
+    string = get_next_line(fd); 
+    while (string)
     {
-        if (ft_strlen(game->maps[i]) != size)
-            out("map invalid, all lines must be the same size\n", game);
-        i++;
+        game->map_lenght++;
+        free(string);
+        string = get_next_line(fd);
     }
+    close (fd);
 }
-void surrounded_by_walls(t_game *game)
-{
-    int i;
-    int j;
 
-    i = 0;
-    j = 0;
-    while (game->maps[i][j] && game->maps[i][j] == '1')
-        j++;
-    if (game->maps[i][j])
-        out("map invalid, the map must be surrounded by walls\n", game);
-    j = 0;
-    while (game->maps[i])
+void read_the_maps(t_game *game)
+{
+    int fd;
+    char *string;
+    int lines;
+
+
+    ft_lines(game);
+    game->maps = malloc(sizeof(char *) * (game->map_lenght + 1));
+    if (!game->maps)
+        out("Error\n", game);
+    fd = open (game->av, O_RDONLY);
+    if (fd == -1)
+        out("Error\n", game);
+    string = get_next_line(fd); 
+    lines = 0;
+    while (string)
     {
-        if (game->maps[i + 1] == NULL)
-            break;
-        if (game->maps[i][0] != '1' || game->maps[i][ft_strlen(game->maps[i]) - 1] != '1')
-            out("map invalid, the map must be surrounded by walls\n", game);
-        i++;
+        game->maps[lines] = string;
+        lines++;
+        string = get_next_line(fd);
     }
-    j = 0;
-    while (game->maps[i][j] && game->maps[i][j] == '1')
-        j++;
-    if (game->maps[i][j])
-        out("map invalid, the map must be surrounded by walls\n", game);
-}
-
-void  flood_fill(char **tab, int x, int y)
-{
-    if (tab[x][y] == '1' || tab[x][y] == 'F')
-        return;
-    tab[x][y] = 'F';
-    flood_fill(tab, x + 1, y);
-    flood_fill(tab, x, y + 1);
-    flood_fill(tab, x, y - 1);
-    flood_fill(tab, x - 1, y);
-}
-
-void get_player_position(t_game *game)
-{
-    int i;
-    int j;
-
-    i = 0;
-    while (game->maps[i])
-    {
-        j = 0;
-        while (game->maps[i][j])
-        {
-            if (game->maps[i][j] == 'P')
-            {
-                game->player.y = i;
-                game->player.x = j;
-                return ;
-            }
-            j++;
-        }
-        i++;
-    }
-}
-
-void   check_path(t_game *game)
-{
-    int i;
-    int j;
-
-    i = 0;
-    flood_fill(game->maps, game->player.x, game->player.y);
-
-    while (game->maps[i])
-    {
-        j = 0;
-        while (game->maps[i][j])
-        {
-            if (game->maps[i][j] == 'C' || game->maps[i][j] == 'E')
-                out("map invalid, the map must be surrounded by walls\n", game);
-            j++;
-        }
-        i++;
-    }
-}                                                                                                                                                                                                                                                                                                                                                                                          
-void filter_maps(t_game *game)
-{
-    read_the_maps(game);
-    elements(game);
-    nb_elements(game);
-    nb_lines(game);
-    surrounded_by_walls(game);
-    get_player_position(game);
-    check_path(game);
-    read_the_maps(game);
-
+    game->maps[lines] = NULL;
+    close(fd);
 }

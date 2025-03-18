@@ -1,4 +1,14 @@
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   recording.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sechlahb <sechlahb@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/11 17:32:08 by sechlahb          #+#    #+#             */
+/*   Updated: 2025/03/15 15:46:25 by sechlahb         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef SO_LONG_H
 #define SO_LONG_H
@@ -9,13 +19,9 @@
 #include <stdlib.h>
 # include <fcntl.h>
 
-# define KEY_W 119
 # define KEY_UP 65362
-# define KEY_S 115
 # define KEY_DOWN 65364 
-# define KEY_A 97
 # define KEY_LEFT 65361
-# define KEY_D 100
 # define KEY_RIGHT 65363
 # define KEY_ESC 65307
 
@@ -46,13 +52,11 @@ typedef struct s_game
 
 /*tools*/
 void	ft_putstr_fd(char *s, int fd);
-int ft_strlines(char **str);
-void	*ft_memset(void *s, int c, size_t n);
+void initialisation(t_game *game);
 
-/*check file*/
-
-/*check maps*/
+/*la filtration de map*/
 void read_the_maps(t_game *game);
+void   check_path(t_game *game);
 void filter_maps(t_game *game);
 
 
