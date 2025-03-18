@@ -70,7 +70,7 @@ int main(int ac, char **av)
     filter_maps(game);
     game->lbaaab = malloc(4);
     if (!game->lbaaab)
-        out("Error\n", game);
+            out("Error\n", game);
     game->mlx = mlx_init();
     if (!game->mlx)
         out("Error\n", game);

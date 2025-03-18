@@ -6,11 +6,32 @@
 /*   By: sechlahb <sechlahb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 20:20:54 by sechlahb          #+#    #+#             */
-/*   Updated: 2025/03/18 03:29:00 by sechlahb         ###   ########.fr       */
+/*   Updated: 2025/03/18 17:57:23 by sechlahb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+static void new_position(t_game *game, int new_x, int new_y)
+{
+    if (game->c_count > 0)
+    {
+        game->maps[game->player.y][game->player.x] = '0';
+        game->player.x = new_x;
+        game->player.y = new_y;
+        game->maps[game->player.y][game->player.x] = 'P';
+        printf("move number == %d\n", game->player.p_steps++);
+        rander_map(game);
+        game->lbaaab[0] = 1;
+        return ;
+    }
+    else if (game->c_count == 0)
+    {
+        ft_putstr_fd("You win\n", 1);
+        mlx_loop_end(game->mlx);
+        out(NULL, game);
+    }
+}
 
 void ft_move_player(t_game *game, int x, int y)
 {
@@ -25,25 +46,10 @@ void ft_move_player(t_game *game, int x, int y)
         game->c_count--;
     else if (game->maps[new_y][new_x] == 'E')
     {
-        if (game->c_count > 0)
-        {
-            game->maps[game->player.y][game->player.x] = '0';
-            game->player.x = new_x;
-            game->player.y = new_y;
-            game->maps[game->player.y][game->player.x] = 'P';
-            printf("move number == %d\n", game->player.p_steps++);
-            rander_map(game);
-            game->lbaaab[0] = 1;
-            return ;
-        }
-        else if (game->c_count == 0)
-        {
-            ft_putstr_fd("You win\n", 1);
-            mlx_loop_end(game->mlx);
-            out(NULL, game);
-        }
+        new_position(game, new_x, new_y);
+        return ;
     }
-    if (game->lbaaab[0])
+    if (game->lbaaab[0] == 1)
         game->maps[game->player.y][game->player.x] = 'E';
     else
         game->maps[game->player.y][game->player.x] = '0';

@@ -32,7 +32,7 @@ static void   check_file(t_game *game)
         i--;
         j--;
     }
-    if (j == -1 && i > -1)
+    if (j == -1 && i > -1 )
         return ;
     else
         out("Error\nthe name of the map shoud be end with _.ber\n", game);
