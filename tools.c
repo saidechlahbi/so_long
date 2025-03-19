@@ -16,12 +16,12 @@ void	ft_putstr_fd(char *s, int fd)
 {
 	while (*s)
 	{
-		write (fd, s, 1);
+		write(fd, s, 1);
 		s++;
 	}
 }
 
-void initialisation(t_game *game)
+void	initialisation(t_game *game)
 {
 	game->mlx = NULL;
 	game->window = NULL;
@@ -41,3 +41,26 @@ void initialisation(t_game *game)
 	game->player.p_steps = 0;
 	game->lbaaab = NULL;
 }
+
+// int	ft_putnbr(int n)
+// {
+// 	char	c;
+// 	int		count;
+
+// 	count = 0;
+// 	if (n == -2147483648)
+// 	{
+// 		write(1, "-2147483648", 11);
+// 		return (11);
+// 	}
+// 	if (n < 0)
+// 	{
+// 		count += write(1, "-", 1);
+// 		n = -n;
+// 	}
+// 	if (n > 9)
+// 		count += ft_putnbr(n / 10);
+// 	c = (n % 10) + '0';
+// 	count += ft_putchar(c);
+// 	return (count);
+// }
