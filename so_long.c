@@ -6,7 +6,7 @@
 /*   By: sechlahb <sechlahb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 17:32:08 by sechlahb          #+#    #+#             */
-/*   Updated: 2025/03/19 02:46:15 by sechlahb         ###   ########.fr       */
+/*   Updated: 2025/03/21 03:12:28 by sechlahb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,25 @@ void	load_textures(t_game *game)
 		out("Error\n", game);
 }
 
+void	helper(t_game *game, int i, int j)
+{
+	if (game->maps[i][j] == '1')
+		mlx_put_image_to_window(game->mlx, game->window, game->img_wall,
+			j * 64, i * 64);
+	else if (game->maps[i][j] == '0')
+		mlx_put_image_to_window(game->mlx, game->window,
+			game->img_floor, j * 64, i * 64);
+	else if (game->maps[i][j] == 'P')
+		mlx_put_image_to_window(game->mlx, game->window,
+			game->img_player, j * 64, i * 64);
+	else if (game->maps[i][j] == 'C')
+		mlx_put_image_to_window(game->mlx, game->window,
+			game->img_collect, j * 64, i * 64);
+	else if (game->maps[i][j] == 'E')
+		mlx_put_image_to_window(game->mlx, game->window, game->img_exit,
+			j * 64, i * 64);
+}
+
 void	rander_map(t_game *game)
 {
 	int	i;
@@ -40,21 +59,7 @@ void	rander_map(t_game *game)
 		j = 0;
 		while (game->maps[i][j])
 		{
-			if (game->maps[i][j] == '1')
-				mlx_put_image_to_window(game->mlx, game->window, game->img_wall,
-					j * 64, i * 64);
-			else if (game->maps[i][j] == '0')
-				mlx_put_image_to_window(game->mlx, game->window,
-					game->img_floor, j * 64, i * 64);
-			else if (game->maps[i][j] == 'P')
-				mlx_put_image_to_window(game->mlx, game->window,
-					game->img_player, j * 64, i * 64);
-			else if (game->maps[i][j] == 'C')
-				mlx_put_image_to_window(game->mlx, game->window,
-					game->img_collect, j * 64, i * 64);
-			else if (game->maps[i][j] == 'E')
-				mlx_put_image_to_window(game->mlx, game->window, game->img_exit,
-					j * 64, i * 64);
+			helper(game, i, j);
 			j++;
 		}
 		i++;
@@ -92,6 +97,6 @@ int	main(int ac, char **av)
 	load_textures(game);
 	rander_map(game);
 	mlx_hook(game->window, 17, 0, handle, game);
-	mlx_hook(game->window, 2, 1L << 0, handel, game);
+	mlx_key_hook(game->window, handel, game);
 	mlx_loop(game->mlx);
 }

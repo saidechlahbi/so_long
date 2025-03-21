@@ -1,7 +1,7 @@
 CC = cc 
 CFLAGS = -Wall -Wextra -Werror
 
-FRAMEWORKS = -L/usr/include/minilibx-linux -lmlx -lX11 -lXext -lm
+FRAMEWORKS = -L/usr/include/minilibx-linux -lmlx -lX11 -lXext 
 
 FILES = check_map.c check_map1.c check_map2.c  clean.c so_long.c get_next_line.c tools.c \
 		get_next_line_utils.c inputs.c
