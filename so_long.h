@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   recording.c                                        :+:      :+:    :+:   */
+/*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sechlahb <sechlahb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 17:32:08 by sechlahb          #+#    #+#             */
-/*   Updated: 2025/03/15 15:46:25 by sechlahb         ###   ########.fr       */
+/*   Updated: 2025/03/22 02:36:40 by sechlahb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include "/usr/include/minilibx-linux/mlx.h"
 # include "ft_printf/ft_printf.h"
 # include <fcntl.h>
-# include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
 
@@ -56,7 +55,6 @@ typedef struct s_game
 /*tools*/
 void			ft_putstr_fd(char *s, int fd);
 void			initialisation(t_game *game);
-// int	ft_putnbr(int n);
 
 /*la filtration de map*/
 void			read_the_maps(t_game *game);

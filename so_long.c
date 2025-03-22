@@ -6,7 +6,7 @@
 /*   By: sechlahb <sechlahb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 17:32:08 by sechlahb          #+#    #+#             */
-/*   Updated: 2025/03/21 03:12:28 by sechlahb         ###   ########.fr       */
+/*   Updated: 2025/03/22 02:36:57 by sechlahb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	rander_map(t_game *game)
 
 int	handle(t_game *game)
 {
-	out("Error\n", game);
+	out("game closed\n", game);
 	exit(0);
 }
 
@@ -87,6 +87,7 @@ int	main(int ac, char **av)
 	game->lbaaab = malloc(4);
 	if (!game->lbaaab)
 		out("Error\n", game);
+	game->lbaaab[0] = 0;
 	game->mlx = mlx_init();
 	if (!game->mlx)
 		out("Error\n", game);

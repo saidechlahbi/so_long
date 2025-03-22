@@ -6,7 +6,7 @@
 /*   By: sechlahb <sechlahb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 13:53:29 by sechlahb          #+#    #+#             */
-/*   Updated: 2025/03/19 01:33:35 by sechlahb         ###   ########.fr       */
+/*   Updated: 2025/03/22 02:22:44 by sechlahb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 # define FT_PRINTF_H
 
 # include <stdarg.h>
-# include <stdint.h>
-# include <stdio.h>
-# include <stdlib.h>
 # include <unistd.h>
 
 int	ft_printf(const char *str, ...);

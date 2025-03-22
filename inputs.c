@@ -6,7 +6,7 @@
 /*   By: sechlahb <sechlahb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 20:20:54 by sechlahb          #+#    #+#             */
-/*   Updated: 2025/03/19 01:39:33 by sechlahb         ###   ########.fr       */
+/*   Updated: 2025/03/22 02:32:01 by sechlahb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	handel(int key, t_game *game)
 {
 	if (key == KEY_ESC)
 	{
-		out("game over\n", game);
+		out("game closed\n", game);
 		mlx_loop_end(game->mlx);
 		exit(1);
 	}
