@@ -6,7 +6,7 @@
 /*   By: sechlahb <sechlahb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 20:20:54 by sechlahb          #+#    #+#             */
-/*   Updated: 2025/03/22 02:32:01 by sechlahb         ###   ########.fr       */
+/*   Updated: 2025/03/25 01:12:44 by sechlahb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	ft_move_player(t_game *game, int x, int y)
 	rander_map(game);
 }
 
-int	handel(int key, t_game *game)
+int	handle_player(int key, t_game *game)
 {
 	if (key == KEY_ESC)
 	{

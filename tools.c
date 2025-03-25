@@ -6,7 +6,7 @@
 /*   By: sechlahb <sechlahb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 17:32:08 by sechlahb          #+#    #+#             */
-/*   Updated: 2025/03/22 02:21:04 by sechlahb         ###   ########.fr       */
+/*   Updated: 2025/03/24 23:39:35 by sechlahb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,8 @@ void	initialisation(t_game *game)
 	game->player.p_count = 0;
 	game->player.p_steps = 0;
 	game->lbaaab = NULL;
+	game->lbaaab = malloc(4);
+	if (!game->lbaaab)
+		out("Error\n", game);
+	game->lbaaab[0] = 0;
 }

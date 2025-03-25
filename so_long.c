@@ -6,13 +6,13 @@
 /*   By: sechlahb <sechlahb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 17:32:08 by sechlahb          #+#    #+#             */
-/*   Updated: 2025/03/22 02:36:57 by sechlahb         ###   ########.fr       */
+/*   Updated: 2025/03/25 01:12:36 by sechlahb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	load_textures(t_game *game)
+static void	load_textures(t_game *game)
 {
 	game->img_player = mlx_xpm_file_to_image(game->mlx, "textures/player.xpm",
 			&(int){64}, &(int){64});
@@ -29,7 +29,7 @@ void	load_textures(t_game *game)
 		out("Error\n", game);
 }
 
-void	helper(t_game *game, int i, int j)
+static void	helper(t_game *game, int i, int j)
 {
 	if (game->maps[i][j] == '1')
 		mlx_put_image_to_window(game->mlx, game->window, game->img_wall,
@@ -77,17 +77,13 @@ int	main(int ac, char **av)
 	t_game	*game;
 
 	if (ac != 2)
-		return (write(1, "Error\n", 6), 1);
+		return (write(2, "Error\n", 6), 1);
 	game = malloc(sizeof(t_game));
 	if (!game)
 		return (1);
 	initialisation(game);
 	game->av = av[1];
 	filter_maps(game);
-	game->lbaaab = malloc(4);
-	if (!game->lbaaab)
-		out("Error\n", game);
-	game->lbaaab[0] = 0;
 	game->mlx = mlx_init();
 	if (!game->mlx)
 		out("Error\n", game);
@@ -98,6 +94,6 @@ int	main(int ac, char **av)
 	load_textures(game);
 	rander_map(game);
 	mlx_hook(game->window, 17, 0, handle, game);
-	mlx_key_hook(game->window, handel, game);
+	mlx_key_hook(game->window, handle_player, game);
 	mlx_loop(game->mlx);
 }

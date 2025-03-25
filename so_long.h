@@ -6,7 +6,7 @@
 /*   By: sechlahb <sechlahb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 17:32:08 by sechlahb          #+#    #+#             */
-/*   Updated: 2025/03/22 02:36:40 by sechlahb         ###   ########.fr       */
+/*   Updated: 2025/03/25 01:12:57 by sechlahb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void			check_path(t_game *game);
 void			filter_maps(t_game *game);
 
 void			rander_map(t_game *game);
-int				handel(int key, t_game *game);
+int				handle_player(int key, t_game *game);
 
 /* clean */
 void			ft_clean_strings(char **strings);
@@ -70,6 +70,10 @@ void			out(char *str, t_game *game);
 void			clean_game(t_game *game);
 
 /* get next line*/
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1
+# endif
+
 char			*ft_calloc(size_t nmemb, size_t size);
 char			*get_next_line(int fd);
 int				ft_strlen(char *s);
@@ -79,9 +83,5 @@ char			*ft_strjoin(char *s1, char *s2);
 char			*get_last_rest_of_line(char *str);
 char			*get_rest_for_next_line(char *str);
 char			*get_next_line(int fd);
-
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1
-# endif
 
 #endif
